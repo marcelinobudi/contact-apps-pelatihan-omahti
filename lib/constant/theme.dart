@@ -6,7 +6,7 @@ final ThemeData themeLight = ThemeData(
   colorScheme: kColorScheme,
 
   // Text Theme
-  textTheme: GoogleFonts.poppinsTextTheme(ThemeData.light().textTheme),
+  textTheme: GoogleFonts.poppinsTextTheme(),
 
   // Outlined Button Theme
   // By default, using black border color
@@ -25,9 +25,5 @@ final ThemeData themeLight = ThemeData(
     style: FilledButton.styleFrom(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     ),
-  ),
-
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(),
   ),
 );

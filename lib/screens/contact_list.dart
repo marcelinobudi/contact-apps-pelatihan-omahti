@@ -8,7 +8,9 @@ class ContactListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('data')),
       body: Column(
-        children: [TextButton(onPressed: () {}, child: Text('Filled'))],
+        children: [
+          TextFormField(decoration: InputDecoration(label: Text('data'))),
+        ],
       ),
     );
   }
