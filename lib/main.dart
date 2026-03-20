@@ -1,3 +1,5 @@
+import 'package:contacts/constant/theme.dart';
+import 'package:contacts/models/contact.dart';
 import 'package:contacts/screens/contact_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,8 +15,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const ContactListScreen(),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ThemeMode.system,
+      home: SafeArea(child: const ContactListScreen()),
     );
   }
 }

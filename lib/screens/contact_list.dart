@@ -5,6 +5,13 @@ class ContactListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column();
+    return Scaffold(
+      appBar: AppBar(title: Text('data')),
+      body: Column(
+        children: [
+          TextFormField(decoration: InputDecoration(label: Text('data'))),
+        ],
+      ),
+    );
   }
 }
