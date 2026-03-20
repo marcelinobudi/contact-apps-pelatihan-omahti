@@ -9,7 +9,7 @@ class Contact {
     required this.lastName,
     required this.number,
   }) {
-    profilColor = randomColor;
+    photoProfilColor = randomColor;
     id = myRandom.nextInt(1 << 32);
   }
   int? id;
@@ -19,7 +19,7 @@ class Contact {
   /// 62102039232
   String number;
 
-  Color? profilColor;
+  Color? photoProfilColor;
   String? email;
   String? homeAddress;
 
@@ -28,7 +28,8 @@ class Contact {
         profilBackgroundColorList.length,
       )];
 
-  String get initialName => firstName[0] + lastName[0];
+  String get initialName =>
+      firstName[0].toUpperCase() + lastName[0].toUpperCase();
 
   String get fullName => firstName + ' ' + lastName;
 

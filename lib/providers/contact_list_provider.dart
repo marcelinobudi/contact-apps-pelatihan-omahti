@@ -13,12 +13,13 @@ class ContactListNotifier extends StateNotifier<List<Contact>> {
   // IqbaAAAL, disini ya buat logika insertion by string fullName
   void addContact(Contact contact) {
     // aturan penting: state harus diubah dengan assignment, bukan method.
+    // Iqbal, kalau kamu mau nerapain array terurut atau terserah kamu wkwkw, logika pengurutan kupasrahkan ke kamu.
     state = [...state, contact];
   }
 
   void deleteContact(int id) {
     // HOHO Linear search, lambat ni harusnya, cuma yaudalah soalnya contactnya ga bakal terlalu banyak
-    // Iqbal, kalau kamu mau nerapain array terurut atau terserah kamu wkwkw, logika pengurutan kupasrahkan ke kamu.
+
     state = state.where((element) => element.id != id).toList();
   }
 
