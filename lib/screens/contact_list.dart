@@ -3,15 +3,65 @@ import 'package:contacts/providers/contact_list_provider.dart';
 import 'package:contacts/screens/add_contact.dart';
 import 'package:contacts/widgets/app_bar_contact_list.dart';
 import 'package:contacts/widgets/contact_item_tile.dart';
+import 'package:contacts/widgets/contact_list.dart';
+import 'package:contacts/widgets/contact_searching_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ContactListScreen extends ConsumerWidget {
+class ContactListScreen extends ConsumerStatefulWidget {
   const ContactListScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final List<Contact> contacts = ref.watch(contactListProvider);
+  ConsumerState<ContactListScreen> createState() => _ContactListScreenState();
+}
+
+class _ContactListScreenState extends ConsumerState<ContactListScreen> {
+  final TextEditingController searchController = TextEditingController();
+  List<Contact> contacts = [];
+  String searchInput = '';
+
+  void _searchControllerListener() {
+    setState(() {
+      searchInput = searchController.text;
+    });
+    print(searchInput);
+  }
+
+  List<Contact> searchContact(String fullName) {
+    final List<Contact> searchResult = contacts.where((element) {
+      int lastIndexCharacter = (element.fullName.length < fullName.length)
+          ? element.fullName.length
+          : fullName.length;
+      return element.fullName.substring(0, lastIndexCharacter).toLowerCase() ==
+          fullName.toLowerCase();
+    }).toList();
+    return searchResult;
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    searchController.addListener(_searchControllerListener);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    contacts = ref.watch(contactListProvider);
+    Widget mainContent = ContactList(
+      contacts: contacts,
+    ); // IQBALLL, di sini ya list contactnya
+
+    if (searchInput.isNotEmpty) {
+      final searchResult = searchContact(searchInput);
+      mainContent = ContactSearchingResult(contacts: searchResult);
+    }
+
     return Scaffold(
       floatingActionButton: IconButton.filled(
         style: IconButton.styleFrom(
@@ -39,6 +89,7 @@ class ContactListScreen extends ConsumerWidget {
               AppBarContactList(contactLength: contacts.length),
               SizedBox(height: 8),
               TextField(
+                controller: searchController,
                 style: TextStyle(
                   fontSize: 14,
                   color: Theme.of(context).colorScheme.onTertiaryContainer,
@@ -60,13 +111,7 @@ class ContactListScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-              ListView.builder(
-                itemCount: contacts.length,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (ctx, index) =>
-                    ContactItemTile(contact: contacts[index]),
-              ),
+              mainContent,
             ],
           ),
         ),

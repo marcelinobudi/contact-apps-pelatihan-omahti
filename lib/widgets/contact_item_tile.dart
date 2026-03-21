@@ -1,4 +1,5 @@
 import 'package:contacts/models/contact.dart';
+import 'package:contacts/screens/contact_details.dart';
 import 'package:flutter/material.dart';
 
 class ContactItemTile extends StatelessWidget {
@@ -7,11 +8,19 @@ class ContactItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: Container(
-        width: double.infinity,
-        height: 42,
-        margin: EdgeInsets.only(bottom: 20),
+    return Container(
+      width: double.infinity,
+      height: 42,
+      margin: EdgeInsets.only(bottom: 20),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(10),
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (ctx) => ContactDetailsScreen(contact: contact),
+            ),
+          );
+        },
         child: Row(
           mainAxisAlignment: .start,
           crossAxisAlignment: .center,
