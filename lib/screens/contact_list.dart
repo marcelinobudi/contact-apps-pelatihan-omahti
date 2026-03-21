@@ -24,7 +24,6 @@ class _ContactListScreenState extends ConsumerState<ContactListScreen> {
     setState(() {
       searchInput = searchController.text;
     });
-    print(searchInput);
   }
 
   List<Contact> searchContact(String fullName) {
