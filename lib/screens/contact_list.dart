@@ -1,5 +1,6 @@
 import 'package:contacts/models/contact.dart';
 import 'package:contacts/providers/contact_list_provider.dart';
+import 'package:contacts/screens/add_contact.dart';
 import 'package:contacts/widgets/app_bar_contact_list.dart';
 import 'package:contacts/widgets/contact_item_tile.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,11 @@ class ContactListScreen extends ConsumerWidget {
         style: IconButton.styleFrom(
           backgroundColor: Theme.of(context).colorScheme.tertiary,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (ctx) => AddContactScreen()));
+        },
         iconSize: 42,
         icon: Icon(
           Icons.add,
