@@ -19,16 +19,16 @@ List<Contact> contactList = [
   ),
 
   // B
-  Contact(
-    firstName: 'Budi',
-    lastName: 'Santoso Utama',
-    number: '6281323456789',
-  ),
   Contact(firstName: 'Bayu', lastName: 'Setiawan Adi', number: '6281355667788'),
   Contact(
     firstName: 'Bella',
     lastName: 'Clarissa Putri',
     number: '6281399001122',
+  ),
+  Contact(
+    firstName: 'Budi',
+    lastName: 'Santoso Utama',
+    number: '6281323456789',
   ),
 
   // C

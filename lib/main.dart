@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.system,
-      home: SafeArea(child: const ContactListScreen()),
+      home: ContactListScreen(),
     );
   }
 }
