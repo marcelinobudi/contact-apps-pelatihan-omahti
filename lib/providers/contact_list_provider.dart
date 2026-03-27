@@ -8,13 +8,27 @@ final contactListProvider =
     });
 
 class ContactListNotifier extends StateNotifier<List<Contact>> {
-  ContactListNotifier() : super(contactList);
+  ContactListNotifier() : super(contactList){
+    insertionSort(state);
+  }
 
-  // IqbaAAAL, disini ya buat logika insertion by string fullName
+  void insertionSort(List<Contact> list) {
+    for (int i = 1; i < list.length; i++) {
+      Contact key = list[i];
+      int j = i - 1;
+
+      while (j >= 0 && list[j].fullName.toLowerCase().compareTo(key.fullName.toLowerCase()) > 0) {
+        list[j + 1] = list[j];
+        j = j - 1;
+      }
+      list[j + 1] = key;
+    }
+  }
+
   void addContact(Contact contact) {
-    // aturan penting: state harus diubah dengan assignment, bukan method.
-    // Iqbal, kalau kamu mau nerapain array terurut atau terserah kamu wkwkw, logika pengurutan kupasrahkan ke kamu.
-    state = [...state, contact];
+    List<Contact> newList = [...state, contact];
+    insertionSort(newList);
+    state = newList;
   }
 
   void deleteContact(int id) {

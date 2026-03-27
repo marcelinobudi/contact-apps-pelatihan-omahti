@@ -10,7 +10,7 @@ class Contact {
     required this.number,
   }) {
     photoProfilColor = randomColor;
-    id = myRandom.nextInt(1 << 32);
+    id = myRandom.nextInt(1000000000);
   }
   int? id;
   String firstName;
