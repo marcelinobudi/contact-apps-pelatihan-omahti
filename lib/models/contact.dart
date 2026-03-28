@@ -11,6 +11,7 @@ class Contact {
   }) {
     photoProfilColor = randomColor;
     id = myRandom.nextInt(1000000000);
+    number = filterNumber(number);
   }
   int? id;
   String firstName;
