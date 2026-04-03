@@ -46,8 +46,7 @@ class ContactDetailsScreen extends ConsumerWidget {
             icon: Icon(Icons.edit_outlined),
             onPressed: () {
               // Navigasi ke halaman Edit
-              Navigator.push(
-                context,
+              Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                   builder: (context) => EditContactScreen(contact: contact),
                 ),

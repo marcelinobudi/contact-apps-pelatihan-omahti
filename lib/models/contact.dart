@@ -34,6 +34,14 @@ class Contact {
 
   String get fullName => firstName + ' ' + lastName;
 
+  void editContact({String? firstName, String? lastName, String? number, String? email, String? homeAddress}){
+    this.firstName = firstName??this.firstName;
+    this.lastName = lastName??this.lastName;
+    this.number = (number != null) ? filterNumber(number) : this.number;
+    this.email = email??this.email;
+    this.homeAddress = homeAddress??this.homeAddress;
+  }
+
   String filterNumber(String number) {
     if (number[0] == '+') {
       number = number.substring(1);
